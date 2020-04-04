@@ -41,7 +41,6 @@ Bitter is a clone/parody of twitter.  Users can create an account, login, post/d
 
 
 	| Component | Priority | Estimated Time |
-	| --- | :---: |  :---: |
 	| Backend Setup w/ Routes | Super High | 4-hours|
         | Frontend Setup | Super High | 8-hours|
         | Basic Styling | High | 24-Hours|
@@ -49,6 +48,7 @@ Bitter is a clone/parody of twitter.  Users can create an account, login, post/d
         | Email Notifications | Medium | 4-hours|
         | Change Password | Low | 4-hours|
 	| Total | H | 40-hours|
+        | --- | :---: |  :---: |
 
 ### You will need the following in your README when you submit your final product (due 4/15)
 
