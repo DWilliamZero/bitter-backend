@@ -2,8 +2,6 @@
 
 ## Description:
 Bitter is a clone/parody of twitter.  Users can create an account, login, post "bits", comment on other people's bits, and follow other users. Bitter is built using a React frontend and a Ruby on Rails backend.  Bitter also employs firebase cloud storage for pictures, and Gem Mail package for email notifications.  The Frontend is deployed to Surge, and the backend is deployed on Heroku.
-
-![meme](https://media.giphy.com/media/k4ZItrTKDPnSU/giphy.gif)
 ![](http://dwilliamzero.com/zero-cloud/bitter-logo.png)
 
 ## MVP Goals Include:
