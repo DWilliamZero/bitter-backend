@@ -2,7 +2,7 @@
 
 ## Description:
 Bitter is an "Angry-Bird" parody of twitter.  Users can create an account, login, post "bits", comment on other people's bits, and follow other users. Bitter is built using a React frontend and a Ruby on Rails backend.  Bitter also employs firebase cloud storage for pictures, and Gem Mail package for email notifications.  The Frontend is deployed to Surge, and the backend is deployed on Heroku.
-![Bitter - Share Your Dumb Opinions With The World!](http://dwilliamzero.com/zero-cloud/bitter-logo.png)
+![Bitter - Share Your Dumb Opinions With The World!](https://dwilliamzero.com/zero-cloud/bitter-logo.png "Bitter - Share Your Dumb Opinions With The World!")
 
 ## MVP Goals Include:
  - Users can create an account
