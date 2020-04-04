@@ -25,7 +25,7 @@ Bitter is a clone/parody of twitter.  Users can create an account, login, post "
  
  ## Entity Realtional Diagram (ERD)
 	
-- Made with [lucidchart](https://www.lucidchart.com/) 
+- Made with [draw.io](https://www.draw.io/)
 
  ## Server-side Routes
  
@@ -44,12 +44,12 @@ Bitter is a clone/parody of twitter.  Users can create an account, login, post "
 ## Link to deployed site
 
 ## Installation instructions
-- clone backend repo from:  [bitter-backend](https://www.lucidchart.com/)
+- Clone backend repo from:  [bitter-backend](https://www.lucidchart.com/)
    - CD into Repo
    - Run 'bundle install'
    - Run 'rails db:create'
    
-- clone Frontend repo from:  [bitter-frontend](https://www.lucidchart.com/)
+- Clone frontend repo from:  [bitter-frontend](https://www.lucidchart.com/)
    - CD in to repo
    - Run 'npm install'
    - Run 'npm start'
