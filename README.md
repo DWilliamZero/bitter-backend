@@ -34,17 +34,17 @@ Bitter is a clone/parody of twitter.  Users can create an account, login, post/d
  - Link to API Endpoint documentation (and any other 3rd party libraries you plan on incorporating)
  - Technologies used
  - List of server-side routes
- - An explanation of the major challenges you expect to face while building this app
- ---
-	|        Component        |  Priority  | Estimated Time |
-	| ----------------------- | :--------: |  -----------: |
-	| Backend Setup w/ Routes | Super High | 4-hours|
-        | Frontend Setup | Super High | 8-hours|
-        | Basic Styling | High | 24-Hours|
-        | Firebase Cloud Storage | Medium | 4-hours|
-        | Email Notifications | Medium | 4-hours|
-        | Change Password | Low | 4-hours|
-	| Total |  --  | 40-hours|
+ - An explanation of the major challenges you expect to face while building this app.
+
+| Component        | Priority  | Estimated Time |
+| ----------------------- | :--------: |  -----------: |
+| Backend Setup w/ Routes | Super High | 4-hours|
+| Frontend Setup | Super High | 8-hours|
+| Basic Styling | High | 24-Hours|
+| Firebase Cloud Storage | Medium | 4-hours|
+| Email Notifications | Medium | 4-hours|
+| Change Password | Low | 4-hours|
+| Total |  --  | 40-hours|
 
 | Tables        | Are           | Cool  |
 | ------------- |:-------------:| -----:|
