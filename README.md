@@ -35,21 +35,22 @@ Bitter is a clone/parody of twitter.  Users can create an account, login, post/d
  - Technologies used
  - List of server-side routes
  - An explanation of the major challenges you expect to face while building this app
- - Timeframes
-
-	- your estimates can help you organize your workload better, for e.g.
-
-
-	| Component | Priority | Estimated Time |
-	| --- | :---: |  :---: |
+ ---
+	|        Component        |  Priority  | Estimated Time |
+	| ----------------------- | :--------: |  -----------: |
 	| Backend Setup w/ Routes | Super High | 4-hours|
         | Frontend Setup | Super High | 8-hours|
         | Basic Styling | High | 24-Hours|
         | Firebase Cloud Storage | Medium | 4-hours|
         | Email Notifications | Medium | 4-hours|
         | Change Password | Low | 4-hours|
-	| Total | H | 40-hours|
----
+	| Total |  --  | 40-hours|
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
 
 ### You will need the following in your README when you submit your final product (due 4/15)
 
