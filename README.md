@@ -1,11 +1,9 @@
 # Bitter - A Twitter Parody website
 
 ## Description:
-Bitter is a clone/parody of twitter.  Users can create an account, login, post/delete "bits", comment on other people's beets, and follow/unfollow other users. Bitter is built using a React frontend, and a Ruby on Rails backend.  Bitter also employs firebase cloud storage for picture, and Active Mailer for email notifications.  The Frontend is deployed to Surge, and the backend is deployed on Heroku.
+Bitter is a clone/parody of twitter.  Users can create an account, login, post "bits", comment on other people's bits, and follow other users. Bitter is built using a React frontend and a Ruby on Rails backend.  Bitter also employs firebase cloud storage for pictures, and Gem Mail package for email notifications.  The Frontend is deployed to Surge, and the backend is deployed on Heroku.
 
 ![meme](https://media.giphy.com/media/k4ZItrTKDPnSU/giphy.gif)
-
-
 
 ## MVP Goals Include:
  - Users can create an account
@@ -23,18 +21,15 @@ Bitter is a clone/parody of twitter.  Users can create an account, login, post/d
  
  ## Wireframes
  
- 
  ## Component Tree
  
  ## Entity Realtional Diagram (ERD)
 	
-
 - Made with [lucidchart](https://www.lucidchart.com/) 
 
- - Link to API Endpoint documentation (and any other 3rd party libraries you plan on incorporating)
- - Technologies used
- - List of server-side routes
- - An explanation of the major challenges you expect to face while building this app.
+ ## Server-side Routes
+ 
+ ## Expected Challenges
 
 | Component        | Priority  | Estimated Time |
 | ----------------------- | :--------: |  -----------: |
@@ -46,11 +41,7 @@ Bitter is a clone/parody of twitter.  Users can create an account, login, post/d
 | Change Password | Low | 4-hours|
 | Total |  --  | 40-hours|
 
-### You will need the following in your README when you submit your final product (due 4/15)
-
-
 ## Link to deployed site
-
 
 ## Installation instructions
 - clone backend repo from:  [bitter-backend](https://www.lucidchart.com/)
