@@ -46,12 +46,6 @@ Bitter is a clone/parody of twitter.  Users can create an account, login, post/d
 | Change Password | Low | 4-hours|
 | Total |  --  | 40-hours|
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
-
 ### You will need the following in your README when you submit your final product (due 4/15)
 
 
