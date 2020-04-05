@@ -22,8 +22,9 @@ Bitter is an "Angry-Bird" parody of twitter.  Users can create an account, login
  
  ## Component Tree
  ![Bitter Component Tree - By D. William Zero](https://dwilliamzero.com/zero-cloud/bitter-component-tree.png "Bitter Component Tree - By D. William Zero")
+ - Made with [draw.io](https://www.draw.io/) 
  
- ## Entity Realtional Diagram (ERD)
+ ## Entity Realational Diagram (ERD)
  ![Bitter ERD - By D. William Zero](https://dwilliamzero.com/zero-cloud/bitter-erd2.png "Bitter ERD - By D. William Zero")
  - Made with [draw.io](https://www.draw.io/)
 
