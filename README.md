@@ -25,7 +25,7 @@ Bitter is an "Angry-Bird" parody of twitter.  Users can create an account, login
  - Made with [draw.io](https://www.draw.io/) 
  
  ## Entity Realational Diagram (ERD)
- ![Bitter ERD - By D. William Zero](https://dwilliamzero.com/zero-cloud/bitter-erd2.png "Bitter ERD - By D. William Zero")
+ ![Bitter ERD - By D. William Zero](https://dwilliamzero.com/zero-cloud/bitter-erd3.png "Bitter ERD - By D. William Zero")
  - Made with [draw.io](https://www.draw.io/)
 
  ## Server-side Routes
