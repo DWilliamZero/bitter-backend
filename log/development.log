@@ -1,0 +1,1296 @@
+  [1m[35m (149.1ms)[0m  [1m[35mCREATE DATABASE "bitter_backend_development" ENCODING = 'unicode'[0m
+  [1m[35m (62.2ms)[0m  [1m[35mCREATE DATABASE "bitter_backend_test" ENCODING = 'unicode'[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5476144276566248565)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200406165309)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "image_url" character varying, "blurb" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200406165309"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePosts (20200406165755)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE TABLE "posts" ("id" bigserial primary key, "image_url" character varying, "content" character varying, "user_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_5b5ddfd518"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_posts_on_user_id" ON "posts"  ("user_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200406165755"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateHates (20200406165959)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE TABLE "hates" ("id" bigserial primary key, "hate" boolean, "user_id" bigint NOT NULL, "post_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_09e8152594"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_ed96357ce5"
+FOREIGN KEY ("post_id")
+  REFERENCES "posts" ("id")
+)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX  "index_hates_on_user_id" ON "hates"  ("user_id")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX  "index_hates_on_post_id" ON "hates"  ("post_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200406165959"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-04-06 17:01:41.760846"], ["updated_at", "2020-04-06 17:01:41.760846"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5476144276566248565)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2020-04-06 13:50:54 -0400
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/webmaster/.rbenv/versions/2.6.4/lib/ruby/gems/2.6.0/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/webmaster/.rbenv/versions/2.6.4/lib/ruby/gems/2.6.0/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 8.4ms | Allocations: 482)
+Completed 200 OK in 22ms (Views: 15.9ms | ActiveRecord: 0.0ms | Allocations: 2715)
+
+
+Started GET "/users" for ::1 at 2020-04-06 13:51:01 -0400
+Processing by UsersController#index as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 211)
+
+
+Started POST "/users" for ::1 at 2020-04-06 13:52:55 -0400
+Error occurred while parsing request parameters.
+Contents:
+
+{
+ "user":{
+ 	"username": "J-Money"
+ 	"email": "jumpy@jumps.com",
+ 	"password": "12345678",
+ 	"image_url": "https://www.butt.com",
+ 	"blurb": "I'm a real cool dude!"
+        }
+}
+  
+ActionDispatch::Http::Parameters::ParseError (767: unexpected token at '{
+ "user":{
+ 	"username": "J-Money"
+ 	"email": "jumpy@jumps.com",
+ 	"password": "12345678",
+ 	"image_url": "https://www.butt.com",
+ 	"blurb": "I'm a real cool dude!"
+        }
+}'):
+  
+actionpack (6.0.2.2) lib/action_dispatch/http/parameters.rb:115:in `rescue in parse_formatted_parameters'
+actionpack (6.0.2.2) lib/action_dispatch/http/parameters.rb:111:in `parse_formatted_parameters'
+actionpack (6.0.2.2) lib/action_dispatch/http/request.rb:381:in `block in POST'
+rack (2.2.2) lib/rack/request.rb:69:in `fetch'
+rack (2.2.2) lib/rack/request.rb:69:in `fetch_header'
+actionpack (6.0.2.2) lib/action_dispatch/http/request.rb:380:in `POST'
+actionpack (6.0.2.2) lib/action_dispatch/http/parameters.rb:55:in `parameters'
+actionpack (6.0.2.2) lib/action_controller/metal/params_wrapper.rb:279:in `_wrapper_enabled?'
+actionpack (6.0.2.2) lib/action_controller/metal/params_wrapper.rb:244:in `process_action'
+activerecord (6.0.2.2) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.0.2.2) lib/abstract_controller/base.rb:136:in `process'
+actionpack (6.0.2.2) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (6.0.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:51:in `dispatch'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:837:in `call'
+rack (2.2.2) lib/rack/etag.rb:27:in `call'
+rack (2.2.2) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.2) lib/rack/head.rb:12:in `call'
+activerecord (6.0.2.2) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Error occurred while parsing request parameters.
+Contents:
+
+{
+ "user":{
+ 	"username": "J-Money"
+ 	"email": "jumpy@jumps.com",
+ 	"password": "12345678",
+ 	"image_url": "https://www.butt.com",
+ 	"blurb": "I'm a real cool dude!"
+        }
+}
+Started POST "/users" for ::1 at 2020-04-06 13:53:32 -0400
+Error occurred while parsing request parameters.
+Contents:
+
+{
+ "user":{
+ 	"username": "J-Money"
+ 	"email": "jumpy@jumps.com",
+ 	"password": "12345678",
+ 	"image_url": "https://www.butt.com",
+ 	"blurb": "I'm a real cool dude!"
+        }
+}
+  
+ActionDispatch::Http::Parameters::ParseError (767: unexpected token at '{
+ "user":{
+ 	"username": "J-Money"
+ 	"email": "jumpy@jumps.com",
+ 	"password": "12345678",
+ 	"image_url": "https://www.butt.com",
+ 	"blurb": "I'm a real cool dude!"
+        }
+}'):
+  
+actionpack (6.0.2.2) lib/action_dispatch/http/parameters.rb:115:in `rescue in parse_formatted_parameters'
+actionpack (6.0.2.2) lib/action_dispatch/http/parameters.rb:111:in `parse_formatted_parameters'
+actionpack (6.0.2.2) lib/action_dispatch/http/request.rb:381:in `block in POST'
+rack (2.2.2) lib/rack/request.rb:69:in `fetch'
+rack (2.2.2) lib/rack/request.rb:69:in `fetch_header'
+actionpack (6.0.2.2) lib/action_dispatch/http/request.rb:380:in `POST'
+actionpack (6.0.2.2) lib/action_dispatch/http/parameters.rb:55:in `parameters'
+actionpack (6.0.2.2) lib/action_controller/metal/params_wrapper.rb:279:in `_wrapper_enabled?'
+actionpack (6.0.2.2) lib/action_controller/metal/params_wrapper.rb:244:in `process_action'
+activerecord (6.0.2.2) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.0.2.2) lib/abstract_controller/base.rb:136:in `process'
+actionpack (6.0.2.2) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (6.0.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:51:in `dispatch'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:837:in `call'
+rack (2.2.2) lib/rack/etag.rb:27:in `call'
+rack (2.2.2) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.2) lib/rack/head.rb:12:in `call'
+activerecord (6.0.2.2) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Error occurred while parsing request parameters.
+Contents:
+
+{
+ "user":{
+ 	"username": "J-Money"
+ 	"email": "jumpy@jumps.com",
+ 	"password": "12345678",
+ 	"image_url": "https://www.butt.com",
+ 	"blurb": "I'm a real cool dude!"
+        }
+}
+Started POST "/users" for ::1 at 2020-04-06 13:53:34 -0400
+Error occurred while parsing request parameters.
+Contents:
+
+{
+ "user":{
+ 	"username": "J-Money"
+ 	"email": "jumpy@jumps.com",
+ 	"password": "12345678",
+ 	"image_url": "https://www.butt.com",
+ 	"blurb": "I'm a real cool dude!"
+        }
+}
+  
+ActionDispatch::Http::Parameters::ParseError (767: unexpected token at '{
+ "user":{
+ 	"username": "J-Money"
+ 	"email": "jumpy@jumps.com",
+ 	"password": "12345678",
+ 	"image_url": "https://www.butt.com",
+ 	"blurb": "I'm a real cool dude!"
+        }
+}'):
+  
+actionpack (6.0.2.2) lib/action_dispatch/http/parameters.rb:115:in `rescue in parse_formatted_parameters'
+actionpack (6.0.2.2) lib/action_dispatch/http/parameters.rb:111:in `parse_formatted_parameters'
+actionpack (6.0.2.2) lib/action_dispatch/http/request.rb:381:in `block in POST'
+rack (2.2.2) lib/rack/request.rb:69:in `fetch'
+rack (2.2.2) lib/rack/request.rb:69:in `fetch_header'
+actionpack (6.0.2.2) lib/action_dispatch/http/request.rb:380:in `POST'
+actionpack (6.0.2.2) lib/action_dispatch/http/parameters.rb:55:in `parameters'
+actionpack (6.0.2.2) lib/action_controller/metal/params_wrapper.rb:279:in `_wrapper_enabled?'
+actionpack (6.0.2.2) lib/action_controller/metal/params_wrapper.rb:244:in `process_action'
+activerecord (6.0.2.2) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.0.2.2) lib/abstract_controller/base.rb:136:in `process'
+actionpack (6.0.2.2) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (6.0.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:51:in `dispatch'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:837:in `call'
+rack (2.2.2) lib/rack/etag.rb:27:in `call'
+rack (2.2.2) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.2) lib/rack/head.rb:12:in `call'
+activerecord (6.0.2.2) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Error occurred while parsing request parameters.
+Contents:
+
+{
+ "user":{
+ 	"username": "J-Money"
+ 	"email": "jumpy@jumps.com",
+ 	"password": "12345678",
+ 	"image_url": "https://www.butt.com",
+ 	"blurb": "I'm a real cool dude!"
+        }
+}
+Started POST "/users" for ::1 at 2020-04-06 13:54:06 -0400
+Error occurred while parsing request parameters.
+Contents:
+
+{
+ "user":{
+ 	"username": "J-Money"
+ 	"email": "jumpy@jumps.com",
+ 	"password": "12345678",
+ 	"image_url": "https://www.butt.com",
+ 	"blurb": "I'm a real cool dude!"
+        }
+}
+  
+ActionDispatch::Http::Parameters::ParseError (767: unexpected token at '{
+ "user":{
+ 	"username": "J-Money"
+ 	"email": "jumpy@jumps.com",
+ 	"password": "12345678",
+ 	"image_url": "https://www.butt.com",
+ 	"blurb": "I'm a real cool dude!"
+        }
+}'):
+  
+actionpack (6.0.2.2) lib/action_dispatch/http/parameters.rb:115:in `rescue in parse_formatted_parameters'
+actionpack (6.0.2.2) lib/action_dispatch/http/parameters.rb:111:in `parse_formatted_parameters'
+actionpack (6.0.2.2) lib/action_dispatch/http/request.rb:381:in `block in POST'
+rack (2.2.2) lib/rack/request.rb:69:in `fetch'
+rack (2.2.2) lib/rack/request.rb:69:in `fetch_header'
+actionpack (6.0.2.2) lib/action_dispatch/http/request.rb:380:in `POST'
+actionpack (6.0.2.2) lib/action_dispatch/http/parameters.rb:55:in `parameters'
+actionpack (6.0.2.2) lib/action_controller/metal/params_wrapper.rb:279:in `_wrapper_enabled?'
+actionpack (6.0.2.2) lib/action_controller/metal/params_wrapper.rb:244:in `process_action'
+activerecord (6.0.2.2) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.0.2.2) lib/abstract_controller/base.rb:136:in `process'
+actionpack (6.0.2.2) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (6.0.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:51:in `dispatch'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.2.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.2.2) lib/action_dispatch/routing/route_set.rb:837:in `call'
+rack (2.2.2) lib/rack/etag.rb:27:in `call'
+rack (2.2.2) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.2) lib/rack/head.rb:12:in `call'
+activerecord (6.0.2.2) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Error occurred while parsing request parameters.
+Contents:
+
+{
+ "user":{
+ 	"username": "J-Money"
+ 	"email": "jumpy@jumps.com",
+ 	"password": "12345678",
+ 	"image_url": "https://www.butt.com",
+ 	"blurb": "I'm a real cool dude!"
+        }
+}
+Started POST "/users" for ::1 at 2020-04-06 13:54:54 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"J-Money", "email"=>"jumpy@jumps.com", "password"=>"[FILTERED]", "image_url"=>"https://www.butt.com", "blurb"=>"I'm a real cool dude!"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "J-Money"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jumpy@jumps.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Create (6.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "image_url", "blurb", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "J-Money"], ["email", "jumpy@jumps.com"], ["password_digest", "$2a$12$ra89.Flos9eGqdafTKamfONjaIU.eKyWfxawjhntpq5DXps6mcI5a"], ["image_url", "https://www.butt.com"], ["blurb", "I'm a real cool dude!"], ["created_at", "2020-04-06 17:54:54.693553"], ["updated_at", "2020-04-06 17:54:54.693553"]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+Completed 201 Created in 322ms (Views: 1.4ms | ActiveRecord: 16.1ms | Allocations: 11984)
+
+
+Started GET "/auth/verify" for ::1 at 2020-04-06 13:56:18 -0400
+Processing by AuthenticationController#verify as */*
+  Parameters: {"user"=>{"username"=>"J-Money", "email"=>"jumpy@jumps.com", "password"=>"[FILTERED]", "image_url"=>"https://www.butt.com", "blurb"=>"I'm a real cool dude!"}, "authentication"=>{"user"=>{"username"=>"J-Money", "email"=>"jumpy@jumps.com", "password"=>"[FILTERED]", "image_url"=>"https://www.butt.com", "blurb"=>"I'm a real cool dude!"}}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 157)
+
+
+Started GET "/auth/verify" for ::1 at 2020-04-06 13:56:21 -0400
+Processing by AuthenticationController#verify as */*
+  Parameters: {"user"=>{"username"=>"J-Money", "email"=>"jumpy@jumps.com", "password"=>"[FILTERED]", "image_url"=>"https://www.butt.com", "blurb"=>"I'm a real cool dude!"}, "authentication"=>{"user"=>{"username"=>"J-Money", "email"=>"jumpy@jumps.com", "password"=>"[FILTERED]", "image_url"=>"https://www.butt.com", "blurb"=>"I'm a real cool dude!"}}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 132)
+
+
+Started GET "/auth/verify" for ::1 at 2020-04-06 13:56:38 -0400
+Processing by AuthenticationController#verify as */*
+  Parameters: {"user"=>{"username"=>"J-Money", "email"=>"jumpy@jumps.com", "password"=>"[FILTERED]", "image_url"=>"https://www.butt.com", "blurb"=>"I'm a real cool dude!"}, "authentication"=>{"user"=>{"username"=>"J-Money", "email"=>"jumpy@jumps.com", "password"=>"[FILTERED]", "image_url"=>"https://www.butt.com", "blurb"=>"I'm a real cool dude!"}}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 132)
+
+
+Started GET "/auth/verify" for ::1 at 2020-04-06 13:57:57 -0400
+Processing by AuthenticationController#verify as */*
+  Parameters: {"user"=>{"username"=>"J-Money", "email"=>"jumpy@jumps.com", "password"=>"[FILTERED]", "image_url"=>"https://www.butt.com", "blurb"=>"I'm a real cool dude!"}, "authentication"=>{"user"=>{"username"=>"J-Money", "email"=>"jumpy@jumps.com", "password"=>"[FILTERED]", "image_url"=>"https://www.butt.com", "blurb"=>"I'm a real cool dude!"}}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 132)
+
+
+Started GET "/auth/verify" for ::1 at 2020-04-06 13:59:51 -0400
+Processing by AuthenticationController#verify as */*
+  Parameters: {"auth"=>{"username"=>"J-Money", "password"=>"[FILTERED]"}, "authentication"=>{"auth"=>{"username"=>"J-Money", "password"=>"[FILTERED]"}}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 132)
+
+
+Started GET "/auth/verify" for ::1 at 2020-04-06 13:59:54 -0400
+Processing by AuthenticationController#verify as */*
+  Parameters: {"auth"=>{"username"=>"J-Money", "password"=>"[FILTERED]"}, "authentication"=>{"auth"=>{"username"=>"J-Money", "password"=>"[FILTERED]"}}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 132)
+
+
+Started GET "/auth/login" for ::1 at 2020-04-06 14:00:30 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/auth/login"):
+  
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/auth/login" for ::1 at 2020-04-06 14:01:26 -0400
+Processing by AuthenticationController#login as */*
+  Parameters: {"auth"=>{"username"=>"J-Money", "password"=>"[FILTERED]"}, "authentication"=>{"auth"=>{"username"=>"J-Money", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "J-Money"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6:in `login'
+Completed 200 OK in 266ms (Views: 0.4ms | ActiveRecord: 0.5ms | Allocations: 1306)
+
+
+Started GET "/auth/verify" for ::1 at 2020-04-06 14:02:52 -0400
+Processing by AuthenticationController#verify as */*
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 132)
+
+
+Started GET "/auth/verify" for ::1 at 2020-04-06 14:03:38 -0400
+Processing by AuthenticationController#verify as */*
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 132)
+
+
+Started GET "/auth/verify" for ::1 at 2020-04-06 14:03:56 -0400
+Processing by AuthenticationController#verify as */*
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 132)
+
+
+Started GET "/auth/verify" for ::1 at 2020-04-06 14:03:57 -0400
+Processing by AuthenticationController#verify as */*
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 132)
+
+
+Started GET "/auth/verify" for ::1 at 2020-04-06 14:03:57 -0400
+Processing by AuthenticationController#verify as */*
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 132)
+
+
+Started GET "/auth/verify" for ::1 at 2020-04-06 14:05:43 -0400
+Processing by AuthenticationController#verify as */*
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 132)
+
+
+Started GET "/auth/verify" for ::1 at 2020-04-06 14:05:44 -0400
+Processing by AuthenticationController#verify as */*
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 132)
+
+
+Started GET "/auth/verify" for ::1 at 2020-04-06 14:05:45 -0400
+Processing by AuthenticationController#verify as */*
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 132)
+
+
+Started POST "/auth/verify" for ::1 at 2020-04-06 14:05:52 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/auth/verify"):
+  
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/auth/verify" for ::1 at 2020-04-06 14:06:13 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/auth/verify"):
+  
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/auth/verify" for ::1 at 2020-04-06 14:06:17 -0400
+Processing by AuthenticationController#verify as */*
+  Parameters: {"auth"=>{"username"=>"J-Money", "password"=>"[FILTERED]"}, "authentication"=>{"auth"=>{"username"=>"J-Money", "password"=>"[FILTERED]"}}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 132)
+
+
+Started GET "/auth/verify" for ::1 at 2020-04-06 14:06:19 -0400
+Processing by AuthenticationController#verify as */*
+  Parameters: {"auth"=>{"username"=>"J-Money", "password"=>"[FILTERED]"}, "authentication"=>{"auth"=>{"username"=>"J-Money", "password"=>"[FILTERED]"}}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 132)
+
+
+Started GET "/auth/verify" for ::1 at 2020-04-06 14:06:20 -0400
+Processing by AuthenticationController#verify as */*
+  Parameters: {"auth"=>{"username"=>"J-Money", "password"=>"[FILTERED]"}, "authentication"=>{"auth"=>{"username"=>"J-Money", "password"=>"[FILTERED]"}}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 132)
+
+
+Started POST "/auth/login" for ::1 at 2020-04-06 14:06:31 -0400
+Processing by AuthenticationController#login as */*
+  Parameters: {"auth"=>{"username"=>"J-Money", "password"=>"[FILTERED]"}, "authentication"=>{"auth"=>{"username"=>"J-Money", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "J-Money"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6:in `login'
+Completed 200 OK in 256ms (Views: 0.8ms | ActiveRecord: 2.7ms | Allocations: 1031)
+
+
+Started GET "/auth/verify" for ::1 at 2020-04-06 14:07:05 -0400
+Processing by AuthenticationController#verify as */*
+  Parameters: {"auth"=>{"username"=>"J-Money", "password"=>"[FILTERED]"}, "authentication"=>{"auth"=>{"username"=>"J-Money", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 1010)
+
+
+Started GET "/auth/verify" for ::1 at 2020-04-06 14:07:11 -0400
+Processing by AuthenticationController#verify as */*
+  Parameters: {"auth"=>{"username"=>"J-Money", "password"=>"[FILTERED]"}, "authentication"=>{"auth"=>{"username"=>"J-Money", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 0.4ms | Allocations: 900)
+
+
+Started POST "/users" for ::1 at 2020-04-06 14:09:31 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"J-Money", "email"=>"hairy@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "J-Money"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hairy@dude.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+Completed 422 Unprocessable Entity in 284ms (Views: 0.2ms | ActiveRecord: 1.5ms | Allocations: 6916)
+
+
+Started POST "/users" for ::1 at 2020-04-06 14:09:39 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"k-Money", "email"=>"hairy@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}}
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "k-Money"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hairy@dude.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "image_url", "blurb", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "k-Money"], ["email", "hairy@dude.com"], ["password_digest", "$2a$12$7kkVyQS0oQ85VlmH1r0F6OnV33PotfS5EaT0ZOjyRJsaoxJkklYiK"], ["image_url", ""], ["blurb", ""], ["created_at", "2020-04-06 18:09:40.159632"], ["updated_at", "2020-04-06 18:09:40.159632"]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[35m (5.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+Completed 201 Created in 255ms (Views: 0.5ms | ActiveRecord: 7.1ms | Allocations: 4635)
+
+
+Started DELETE "/users/2" for ::1 at 2020-04-06 14:10:05 -0400
+Processing by UsersController#destroy as */*
+  Parameters: {"user"=>{"username"=>"k-Money", "email"=>"hairy@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}, "id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:46:in `set_user'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:40:in `destroy'
+  [1m[36mUser Destroy (1.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/users_controller.rb:40:in `destroy'
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:40:in `destroy'
+Completed 204 No Content in 8ms (ActiveRecord: 2.8ms | Allocations: 2985)
+
+
+Started DELETE "/users" for ::1 at 2020-04-06 14:10:13 -0400
+  
+ActionController::RoutingError (No route matches [DELETE] "/users"):
+  
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/users" for ::1 at 2020-04-06 14:10:18 -0400
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"k-Money", "email"=>"hairy@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 0.3ms | ActiveRecord: 0.6ms | Allocations: 762)
+
+
+Started GET "/users" for ::1 at 2020-04-06 14:10:28 -0400
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"k-Money", "email"=>"hairy@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 763)
+
+
+Started GET "/users/" for ::1 at 2020-04-06 14:10:40 -0400
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"k-Money", "email"=>"hairy@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 0.3ms | ActiveRecord: 0.5ms | Allocations: 763)
+
+
+Started GET "/users" for ::1 at 2020-04-06 14:11:04 -0400
+Processing by UsersController#index as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 135)
+
+
+Started GET "/users" for ::1 at 2020-04-06 14:11:05 -0400
+Processing by UsersController#index as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 135)
+
+
+Started GET "/users" for ::1 at 2020-04-06 14:11:07 -0400
+Processing by UsersController#index as HTML
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 135)
+
+
+Started DELETE "/users/1" for ::1 at 2020-04-06 14:11:31 -0400
+Processing by UsersController#destroy as */*
+  Parameters: {"user"=>{"username"=>"k-Money", "email"=>"hairy@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}, "id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:46:in `set_user'
+Completed 404 Not Found in 3ms (ActiveRecord: 0.6ms | Allocations: 636)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=1):
+  
+app/controllers/users_controller.rb:46:in `set_user'
+Started DELETE "/users/2" for ::1 at 2020-04-06 14:11:49 -0400
+Processing by UsersController#destroy as */*
+  Parameters: {"user"=>{"username"=>"k-Money", "email"=>"hairy@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}, "id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:46:in `set_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 18ms (Views: 0.3ms | ActiveRecord: 0.5ms | Allocations: 1326)
+
+
+Started POST "/users/2" for ::1 at 2020-04-06 14:13:51 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/users/2"):
+  
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/users" for ::1 at 2020-04-06 14:14:00 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"A-Money", "email"=>"hairy@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "A-Money"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hairy@dude.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+Completed 422 Unprocessable Entity in 262ms (Views: 0.7ms | ActiveRecord: 1.0ms | Allocations: 4041)
+
+
+Started POST "/users" for ::1 at 2020-04-06 14:14:14 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"A-Money", "email"=>"hairyA@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "A-Money"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hairyA@dude.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "image_url", "blurb", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "A-Money"], ["email", "hairyA@dude.com"], ["password_digest", "$2a$12$DYVwTIbPN0R9jENXZ3oJiOtCvfyD/pAUiCJpf73C6kvIoSYwqmjhS"], ["image_url", ""], ["blurb", ""], ["created_at", "2020-04-06 18:14:14.930616"], ["updated_at", "2020-04-06 18:14:14.930616"]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[35m (5.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+Completed 201 Created in 267ms (Views: 0.7ms | ActiveRecord: 7.0ms | Allocations: 4635)
+
+
+Started DELETE "/users/3" for ::1 at 2020-04-06 14:15:06 -0400
+Processing by UsersController#destroy as */*
+  Parameters: {"user"=>{"username"=>"A-Money", "email"=>"hairyA@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}, "id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:46:in `set_user'
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 826)
+
+
+Started DELETE "/users/3" for ::1 at 2020-04-06 14:15:38 -0400
+Processing by UsersController#destroy as */*
+  Parameters: {"user"=>{"username"=>"A-Money", "email"=>"hairyA@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}, "id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:46:in `set_user'
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 821)
+
+
+Started POST "/users/3" for ::1 at 2020-04-06 14:18:59 -0400
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [POST] "/users/3"):
+  
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/users" for ::1 at 2020-04-06 14:19:05 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"J-Money", "email"=>"hairyJ@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (1.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "J-Money"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hairyJ@dude.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "image_url", "blurb", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "J-Money"], ["email", "hairyJ@dude.com"], ["password_digest", "$2a$12$nrq5/cy1AnZdVv9TKd9JT.pp3tevMqp.duWu9Yh0E6J10y5tbbl.K"], ["image_url", ""], ["blurb", ""], ["created_at", "2020-04-06 18:19:05.723124"], ["updated_at", "2020-04-06 18:19:05.723124"]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[35m (5.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+Completed 201 Created in 322ms (Views: 1.0ms | ActiveRecord: 15.4ms | Allocations: 10955)
+
+
+Started DELETE "/users/4" for ::1 at 2020-04-06 14:19:27 -0400
+Processing by UsersController#destroy as */*
+  Parameters: {"user"=>{"username"=>"J-Money", "email"=>"hairyJ@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}, "id"=>"4"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:47:in `set_user'
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 8ms (Views: 0.1ms | ActiveRecord: 1.8ms | Allocations: 1029)
+
+
+Started DELETE "/users/2" for ::1 at 2020-04-06 14:19:58 -0400
+Processing by UsersController#destroy as */*
+  Parameters: {"user"=>{"username"=>"J-Money", "email"=>"hairyJ@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}, "id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:47:in `set_user'
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 5ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 821)
+
+
+Started DELETE "/users/2" for ::1 at 2020-04-06 14:20:02 -0400
+Processing by UsersController#destroy as */*
+  Parameters: {"user"=>{"username"=>"J-Money", "email"=>"hairyJ@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}, "id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:47:in `set_user'
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 8ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 837)
+
+
+Started DELETE "/users/" for ::1 at 2020-04-06 14:20:36 -0400
+  
+ActionController::RoutingError (No route matches [DELETE] "/users"):
+  
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/auth/verify" for ::1 at 2020-04-06 14:21:57 -0400
+  
+ActionController::RoutingError (No route matches [POST] "/auth/verify"):
+  
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/auth/verify" for ::1 at 2020-04-06 14:22:03 -0400
+Processing by AuthenticationController#verify as */*
+  Parameters: {"user"=>{"username"=>"J-Money", "email"=>"hairyJ@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}, "authentication"=>{"user"=>{"username"=>"J-Money", "email"=>"hairyJ@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 8ms (Views: 0.2ms | ActiveRecord: 3.4ms | Allocations: 1653)
+
+
+Started GET "/auth/verify" for ::1 at 2020-04-06 14:22:32 -0400
+Processing by AuthenticationController#verify as */*
+  Parameters: {"user"=>{"username"=>"J-Money", "email"=>"hairyJ@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}, "authentication"=>{"user"=>{"username"=>"J-Money", "email"=>"hairyJ@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 256)
+
+
+Started GET "/auth/verify" for ::1 at 2020-04-06 14:22:33 -0400
+Processing by AuthenticationController#verify as */*
+  Parameters: {"user"=>{"username"=>"J-Money", "email"=>"hairyJ@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}, "authentication"=>{"user"=>{"username"=>"J-Money", "email"=>"hairyJ@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 256)
+
+
+Started GET "/auth/verify" for ::1 at 2020-04-06 14:22:41 -0400
+Processing by AuthenticationController#verify as */*
+  Parameters: {"user"=>{"username"=>"J-Money", "email"=>"hairyJ@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}, "authentication"=>{"user"=>{"username"=>"J-Money", "email"=>"hairyJ@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 257)
+
+
+Started POST "/auth/login" for ::1 at 2020-04-06 14:24:10 -0400
+Processing by AuthenticationController#login as */*
+  Parameters: {"user"=>{"username"=>"J-Money", "email"=>"hairyJ@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}, "authentication"=>{"user"=>{"username"=>"J-Money", "email"=>"hairyJ@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}}}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 170)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: auth):
+  
+app/controllers/authentication_controller.rb:24:in `login_params'
+app/controllers/authentication_controller.rb:6:in `login'
+Started POST "/auth/login" for ::1 at 2020-04-06 14:24:18 -0400
+Processing by AuthenticationController#login as */*
+  Parameters: {"auth"=>{"username"=>"J-Money", "email"=>"hairyJ@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}, "authentication"=>{"auth"=>{"username"=>"J-Money", "email"=>"hairyJ@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}}}
+[31mUnpermitted parameters: :email, :image_url, :blurb[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "J-Money"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6:in `login'
+[31mUnpermitted parameters: :email, :image_url, :blurb[0m
+Completed 200 OK in 275ms (Views: 0.3ms | ActiveRecord: 0.4ms | Allocations: 5638)
+
+
+Started DELETE "/users/4" for ::1 at 2020-04-06 14:25:11 -0400
+Processing by UsersController#destroy as */*
+  Parameters: {"auth"=>{"username"=>"J-Money", "email"=>"hairyJ@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}, "id"=>"4", "user"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:47:in `set_user'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:40:in `destroy'
+  [1m[36mUser Destroy (2.0ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 4]]
+  ↳ app/controllers/users_controller.rb:40:in `destroy'
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:40:in `destroy'
+Completed 200 OK in 29ms (Views: 0.3ms | ActiveRecord: 3.7ms | Allocations: 3189)
+
+
+Started POST "/auth/login" for ::1 at 2020-04-06 14:26:54 -0400
+Processing by AuthenticationController#login as */*
+  Parameters: {"auth"=>{"username"=>"k-Money", "email"=>"hairyJ@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}, "authentication"=>{"auth"=>{"username"=>"k-Money", "email"=>"hairyJ@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}}}
+[31mUnpermitted parameters: :email, :image_url, :blurb[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "k-Money"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6:in `login'
+[31mUnpermitted parameters: :email, :image_url, :blurb[0m
+Completed 200 OK in 277ms (Views: 0.6ms | ActiveRecord: 4.3ms | Allocations: 7010)
+
+
+Started DELETE "/users/2" for ::1 at 2020-04-06 14:27:31 -0400
+Processing by UsersController#destroy as */*
+  Parameters: {"auth"=>{"username"=>"k-Money", "email"=>"hairyJ@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}, "id"=>"2", "user"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:47:in `set_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 7ms (Views: 0.4ms | ActiveRecord: 0.8ms | Allocations: 1466)
+
+
+Started DELETE "/users/2" for ::1 at 2020-04-06 14:27:48 -0400
+Processing by UsersController#destroy as */*
+  Parameters: {"auth"=>{"username"=>"k-Money", "email"=>"hairyJ@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}, "id"=>"2", "user"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:47:in `set_user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:40:in `destroy'
+  [1m[36mUser Destroy (0.5ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/users_controller.rb:40:in `destroy'
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:40:in `destroy'
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 1.6ms | Allocations: 3013)
+
+
+Started POST "/users" for ::1 at 2020-04-06 14:28:52 -0400
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"auth"=>{"username"=>"B-Money", "email"=>"hairyb@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>""}, "user"=>{}}
+Completed 400 Bad Request in 1ms (ActiveRecord: 1.9ms | Allocations: 229)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/users_controller.rb:52:in `user_params'
+app/controllers/users_controller.rb:19:in `create'
+Started POST "/users" for ::1 at 2020-04-06 14:29:32 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"B-Money", "email"=>"hairyb@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome"}}
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "B-Money"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hairyb@dude.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "image_url", "blurb", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "B-Money"], ["email", "hairyb@dude.com"], ["password_digest", "$2a$12$4Ed/ht34VgSbjS1ziZ47k.vFsZhjGrMFziQybhlLHN9xg90ZOj1Pm"], ["image_url", ""], ["blurb", "I'm Awesome"], ["created_at", "2020-04-06 18:29:32.967293"], ["updated_at", "2020-04-06 18:29:32.967293"]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+Completed 201 Created in 314ms (Views: 1.1ms | ActiveRecord: 9.1ms | Allocations: 11351)
+
+
+Started POST "/users" for ::1 at 2020-04-06 14:29:34 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"B-Money", "email"=>"hairyb@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome"}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "B-Money"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hairyb@dude.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+Completed 422 Unprocessable Entity in 297ms (Views: 0.3ms | ActiveRecord: 1.5ms | Allocations: 5458)
+
+
+Started POST "/users" for ::1 at 2020-04-06 14:29:46 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"C-Money", "email"=>"hairyC@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "C-Money"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hairyC@dude.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "image_url", "blurb", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "C-Money"], ["email", "hairyC@dude.com"], ["password_digest", "$2a$12$yVCg7zxDzAUWItAK8Qyn7.BUqmV0IkyRDCDBrZ08eBJXL3bCBPa66"], ["image_url", ""], ["blurb", "I'm Awesome"], ["created_at", "2020-04-06 18:29:47.218934"], ["updated_at", "2020-04-06 18:29:47.218934"]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+Completed 201 Created in 282ms (Views: 1.3ms | ActiveRecord: 3.8ms | Allocations: 4636)
+
+
+Started POST "/users" for ::1 at 2020-04-06 14:29:57 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"D-Money", "email"=>"hairyD@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "D-Money"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hairyD@dude.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "image_url", "blurb", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "D-Money"], ["email", "hairyD@dude.com"], ["password_digest", "$2a$12$Cwm.mqLlxpWgRFwwM.5NxOYjrluTWkcuGCP6xs/j7KYIEAFy03KAa"], ["image_url", ""], ["blurb", "I'm Awesome"], ["created_at", "2020-04-06 18:29:57.899700"], ["updated_at", "2020-04-06 18:29:57.899700"]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+Completed 201 Created in 309ms (Views: 0.5ms | ActiveRecord: 1.7ms | Allocations: 4656)
+
+
+Started POST "/users" for ::1 at 2020-04-06 14:30:06 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"E-Money", "email"=>"hairyE@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "E-Money"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hairyE@dude.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "image_url", "blurb", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "E-Money"], ["email", "hairyE@dude.com"], ["password_digest", "$2a$12$HfTPA.h/d3N4ACUyAzlce.BWwfflBff5IQRjK7BwLI.ladUALgeaq"], ["image_url", ""], ["blurb", "I'm Awesome"], ["created_at", "2020-04-06 18:30:06.700036"], ["updated_at", "2020-04-06 18:30:06.700036"]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+Completed 201 Created in 281ms (Views: 1.7ms | ActiveRecord: 3.8ms | Allocations: 4653)
+
+
+Started POST "/users" for ::1 at 2020-04-06 14:30:15 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"F-Money", "email"=>"hairyF@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "F-Money"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hairyF@dude.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Create (1.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "image_url", "blurb", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "F-Money"], ["email", "hairyF@dude.com"], ["password_digest", "$2a$12$EcBWzKhItoMgBQ4fiRz7guIgVtYMl2VtQMTk6OKs8D0heUHk58z5q"], ["image_url", ""], ["blurb", "I'm Awesome"], ["created_at", "2020-04-06 18:30:15.672053"], ["updated_at", "2020-04-06 18:30:15.672053"]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+Completed 201 Created in 272ms (Views: 0.9ms | ActiveRecord: 2.8ms | Allocations: 4632)
+
+
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5476144276566248565)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateFollows (20200406183348)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "follows" ("id" bigserial primary key, "follower_id" integer, "followee_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200406183348"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5476144276566248565)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT "posts".* FROM "posts" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mFollow Create (1.1ms)[0m  [1m[32mINSERT INTO "follows" ("follower_id", "followee_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["follower_id", 8], ["followee_id", 9], ["created_at", "2020-04-06 18:42:54.920885"], ["updated_at", "2020-04-06 18:42:54.920885"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."followee_id" WHERE "follows"."follower_id" = $1 LIMIT $2[0m  [["follower_id", 8], ["LIMIT", 11]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."followee_id" WHERE "follows"."follower_id" = $1 LIMIT $2[0m  [["follower_id", 8], ["LIMIT", 11]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."followee_id" WHERE "follows"."follower_id" = $1 LIMIT $2[0m  [["follower_id", 9], ["LIMIT", 11]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mFollow Create (0.3ms)[0m  [1m[32mINSERT INTO "follows" ("follower_id", "followee_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["follower_id", 3], ["followee_id", 9], ["created_at", "2020-04-06 18:48:30.339982"], ["updated_at", "2020-04-06 18:48:30.339982"]]
+  [1m[35m (5.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."followee_id" WHERE "follows"."follower_id" = $1 LIMIT $2[0m  [["follower_id", 3], ["LIMIT", 11]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."followee_id" WHERE "follows"."follower_id" = $1 LIMIT $2[0m  [["follower_id", 3], ["LIMIT", 11]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."followee_id" WHERE "follows"."follower_id" = $1 LIMIT $2[0m  [["follower_id", 9], ["LIMIT", 11]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1 OFFSET $2[0m  [["LIMIT", 1], ["OFFSET", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1 OFFSET $2[0m  [["LIMIT", 1], ["OFFSET", 2]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1 OFFSET $2[0m  [["LIMIT", 1], ["OFFSET", 4]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."followee_id" WHERE "follows"."follower_id" = $1 LIMIT $2[0m  [["follower_id", 3], ["LIMIT", 11]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."followee_id" WHERE "follows"."follower_id" = $1 LIMIT $2[0m  [["follower_id", 3], ["LIMIT", 11]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5476144276566248565)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DropFollowTable (20200406191440)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.2ms)[0m  [1m[35mDROP TABLE "follows"[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200406191440"]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5476144276566248565)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5476144276566248565)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateJoinTableFollows (20200406191914)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "followees_followers" ("follower_id" bigint NOT NULL, "followee_id" bigint NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200406191914"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5476144276566248565)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1 OFFSET $2[0m  [["LIMIT", 1], ["OFFSET", 2]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5476144276566248565)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DropFolloweesFollowersTable (20200406194346)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE "followees_followers"[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200406194346"]]
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(5476144276566248565)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5476144276566248565)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(5476144276566248565)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5476144276566248565)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(5476144276566248565)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5476144276566248565)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateFollowsTable (20200406200142)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (5.6ms)[0m  [1m[35mCREATE TABLE "follows" ("id" bigserial primary key, "follower_id" integer, "followee_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200406200142"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(5476144276566248565)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1 OFFSET $2[0m  [["LIMIT", 1], ["OFFSET", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1 OFFSET $2[0m  [["LIMIT", 1], ["OFFSET", 2]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1 OFFSET $2[0m  [["LIMIT", 1], ["OFFSET", 3]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mFollow Create (0.8ms)[0m  [1m[32mINSERT INTO "follows" ("follower_id", "followee_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["follower_id", 5], ["followee_id", 3], ["created_at", "2020-04-06 20:06:44.200776"], ["updated_at", "2020-04-06 20:06:44.200776"]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mFollow Create (0.2ms)[0m  [1m[32mINSERT INTO "follows" ("follower_id", "followee_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["follower_id", 6], ["followee_id", 3], ["created_at", "2020-04-06 20:06:44.203823"], ["updated_at", "2020-04-06 20:06:44.203823"]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mFollow Create (0.3ms)[0m  [1m[32mINSERT INTO "follows" ("follower_id", "followee_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["follower_id", 7], ["followee_id", 3], ["created_at", "2020-04-06 20:06:44.213767"], ["updated_at", "2020-04-06 20:06:44.213767"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."followee_id" = $1 LIMIT $2[0m  [["followee_id", 3], ["LIMIT", 11]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."followee_id" = $1 LIMIT $2[0m  [["followee_id", 3], ["LIMIT", 11]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."followee_id" = $1 LIMIT $2[0m  [["followee_id", 5], ["LIMIT", 11]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."followee_id" WHERE "follows"."follower_id" = $1 LIMIT $2[0m  [["follower_id", 5], ["LIMIT", 11]]
