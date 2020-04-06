@@ -1294,3 +1294,601 @@ Migrating to CreateFollowsTable (20200406200142)
   [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."followee_id" = $1 LIMIT $2[0m  [["followee_id", 3], ["LIMIT", 11]]
   [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."followee_id" = $1 LIMIT $2[0m  [["followee_id", 5], ["LIMIT", 11]]
   [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."followee_id" WHERE "follows"."follower_id" = $1 LIMIT $2[0m  [["follower_id", 5], ["LIMIT", 11]]
+Started GET "/" for ::1 at 2020-04-06 17:13:26 -0400
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/webmaster/.rbenv/versions/2.6.4/lib/ruby/gems/2.6.0/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/webmaster/.rbenv/versions/2.6.4/lib/ruby/gems/2.6.0/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 8.5ms | Allocations: 309)
+Completed 200 OK in 18ms (Views: 12.3ms | ActiveRecord: 0.0ms | Allocations: 1620)
+
+
+Started GET "/follows/" for ::1 at 2020-04-06 17:13:33 -0400
+Processing by FollowsController#index as HTML
+  [1m[36mFollow Load (0.6ms)[0m  [1m[34mSELECT "follows".* FROM "follows"[0m
+  ↳ app/controllers/follows_controller.rb:9:in `index'
+Completed 200 OK in 20ms (Views: 8.0ms | ActiveRecord: 5.4ms | Allocations: 5911)
+
+
+Started GET "/follows/2" for ::1 at 2020-04-06 17:13:44 -0400
+Processing by FollowsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mFollow Load (0.4ms)[0m  [1m[34mSELECT "follows".* FROM "follows" WHERE "follows"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:45:in `set_follow'
+Completed 200 OK in 10ms (Views: 0.5ms | ActiveRecord: 0.7ms | Allocations: 2325)
+
+
+Started GET "/follows/2" for ::1 at 2020-04-06 17:13:59 -0400
+Processing by FollowsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mFollow Load (0.2ms)[0m  [1m[34mSELECT "follows".* FROM "follows" WHERE "follows"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:45:in `set_follow'
+Completed 200 OK in 13ms (Views: 0.3ms | ActiveRecord: 3.4ms | Allocations: 4734)
+
+
+Started GET "/follows/2" for ::1 at 2020-04-06 17:14:00 -0400
+Processing by FollowsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mFollow Load (0.3ms)[0m  [1m[34mSELECT "follows".* FROM "follows" WHERE "follows"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:45:in `set_follow'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 737)
+
+
+Started GET "/follows/2" for ::1 at 2020-04-06 17:14:11 -0400
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by FollowsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mFollow Load (0.4ms)[0m  [1m[34mSELECT "follows".* FROM "follows" WHERE "follows"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:45:in `set_follow'
+Completed 200 OK in 36ms (Views: 0.5ms | ActiveRecord: 5.5ms | Allocations: 5897)
+
+
+Started GET "/follows/2" for ::1 at 2020-04-06 17:14:12 -0400
+Processing by FollowsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mFollow Load (0.3ms)[0m  [1m[34mSELECT "follows".* FROM "follows" WHERE "follows"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:45:in `set_follow'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 738)
+
+
+Started GET "/follows/2" for ::1 at 2020-04-06 17:14:12 -0400
+Processing by FollowsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mFollow Load (0.3ms)[0m  [1m[34mSELECT "follows".* FROM "follows" WHERE "follows"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:45:in `set_follow'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 737)
+
+
+Started GET "/follows/" for ::1 at 2020-04-06 17:14:15 -0400
+Processing by FollowsController#index as HTML
+  [1m[36mFollow Load (0.5ms)[0m  [1m[34mSELECT "follows".* FROM "follows"[0m
+  ↳ app/controllers/follows_controller.rb:9:in `index'
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.5ms | Allocations: 1132)
+
+
+Started POST "/follows/" for ::1 at 2020-04-06 17:18:30 -0400
+Processing by FollowsController#create as */*
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 139)
+
+
+Started POST "/follows/" for ::1 at 2020-04-06 17:19:03 -0400
+Processing by FollowsController#create as */*
+Completed 400 Bad Request in 9ms (ActiveRecord: 0.0ms | Allocations: 916)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: follow):
+  
+app/controllers/follows_controller.rb:50:in `follow_params'
+app/controllers/follows_controller.rb:19:in `create'
+Started POST "/follows/" for ::1 at 2020-04-06 17:20:03 -0400
+Processing by FollowsController#create as */*
+Completed 400 Bad Request in 3ms (ActiveRecord: 0.0ms | Allocations: 888)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: follow):
+  
+app/controllers/follows_controller.rb:50:in `follow_params'
+app/controllers/follows_controller.rb:19:in `create'
+Started POST "/follows/" for ::1 at 2020-04-06 17:20:32 -0400
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by FollowsController#create as */*
+Completed 400 Bad Request in 4ms (ActiveRecord: 0.0ms | Allocations: 1261)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: follow):
+  
+app/controllers/follows_controller.rb:50:in `follow_params'
+app/controllers/follows_controller.rb:19:in `create'
+Started POST "/follows/" for ::1 at 2020-04-06 17:23:42 -0400
+Processing by FollowsController#create as */*
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 121)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: follow):
+  
+app/controllers/follows_controller.rb:50:in `follow_params'
+app/controllers/follows_controller.rb:19:in `create'
+Started POST "/follows/" for ::1 at 2020-04-06 17:24:56 -0400
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by FollowsController#create as */*
+Completed 400 Bad Request in 3ms (ActiveRecord: 0.0ms | Allocations: 1261)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: follow):
+  
+app/controllers/follows_controller.rb:50:in `follow_params'
+app/controllers/follows_controller.rb:19:in `create'
+Started POST "/follows/" for ::1 at 2020-04-06 17:25:05 -0400
+Processing by FollowsController#create as */*
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 121)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: follow):
+  
+app/controllers/follows_controller.rb:50:in `follow_params'
+app/controllers/follows_controller.rb:19:in `create'
+Started POST "/follows/" for ::1 at 2020-04-06 17:25:07 -0400
+Processing by FollowsController#create as */*
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 121)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: follow):
+  
+app/controllers/follows_controller.rb:50:in `follow_params'
+app/controllers/follows_controller.rb:19:in `create'
+Started POST "/follows/" for ::1 at 2020-04-06 17:25:08 -0400
+Processing by FollowsController#create as */*
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 121)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: follow):
+  
+app/controllers/follows_controller.rb:50:in `follow_params'
+app/controllers/follows_controller.rb:19:in `create'
+Started POST "/follows/" for ::1 at 2020-04-06 17:25:14 -0400
+Processing by FollowsController#create as */*
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 121)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: follow):
+  
+app/controllers/follows_controller.rb:50:in `follow_params'
+app/controllers/follows_controller.rb:19:in `create'
+Started POST "/follows/" for ::1 at 2020-04-06 17:25:37 -0400
+Processing by FollowsController#create as */*
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 119)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: follow):
+  
+app/controllers/follows_controller.rb:50:in `follow_params'
+app/controllers/follows_controller.rb:19:in `create'
+Started POST "/follows/" for ::1 at 2020-04-06 17:27:04 -0400
+Processing by FollowsController#create as */*
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 119)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: follow):
+  
+app/controllers/follows_controller.rb:50:in `follow_params'
+app/controllers/follows_controller.rb:19:in `create'
+Started POST "/follows/" for ::1 at 2020-04-06 17:27:17 -0400
+Processing by FollowsController#create as */*
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 119)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: follow):
+  
+app/controllers/follows_controller.rb:50:in `follow_params'
+app/controllers/follows_controller.rb:19:in `create'
+Started POST "/follows/" for ::1 at 2020-04-06 17:27:39 -0400
+Processing by FollowsController#create as */*
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 119)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: follow):
+  
+app/controllers/follows_controller.rb:50:in `follow_params'
+app/controllers/follows_controller.rb:19:in `create'
+Started POST "/follows/" for ::1 at 2020-04-06 17:27:41 -0400
+Processing by FollowsController#create as */*
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 119)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: follow):
+  
+app/controllers/follows_controller.rb:50:in `follow_params'
+app/controllers/follows_controller.rb:19:in `create'
+Started POST "/follows/" for ::1 at 2020-04-06 17:28:18 -0400
+Processing by FollowsController#create as */*
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 119)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: follow):
+  
+app/controllers/follows_controller.rb:50:in `follow_params'
+app/controllers/follows_controller.rb:19:in `create'
+Started POST "/follows/" for ::1 at 2020-04-06 17:28:43 -0400
+Processing by FollowsController#create as */*
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 201)
+
+
+Started POST "/follows/" for ::1 at 2020-04-06 17:29:38 -0400
+Processing by FollowsController#create as */*
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 26ms (Views: 0.2ms | ActiveRecord: 7.8ms | Allocations: 5650)
+
+
+Started POST "/users" for ::1 at 2020-04-06 17:30:05 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"F-Money", "email"=>"hairyF@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "F-Money"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hairyF@dude.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+Completed 422 Unprocessable Entity in 284ms (Views: 0.2ms | ActiveRecord: 1.4ms | Allocations: 10721)
+
+
+Started GET "/users" for ::1 at 2020-04-06 17:30:17 -0400
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"F-Money", "email"=>"hairyF@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 4ms (Views: 0.2ms | ActiveRecord: 1.1ms | Allocations: 957)
+
+
+Started POST "/users" for ::1 at 2020-04-06 17:30:46 -0400
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "dude"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hairy_dude@dude.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[36mUser Create (2.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "image_url", "blurb", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["username", "dude"], ["email", "hairy_dude@dude.com"], ["password_digest", "$2a$12$WTpDBixobCtH6fm2SkpPhezK8v.PmHKzIh3vJ7CEPr6bFDNItQfA6"], ["image_url", ""], ["blurb", "I'm Awesome"], ["created_at", "2020-04-06 21:30:47.191492"], ["updated_at", "2020-04-06 21:30:47.191492"]]
+  ↳ app/controllers/users_controller.rb:22:in `create'
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:22:in `create'
+Completed 201 Created in 269ms (Views: 0.6ms | ActiveRecord: 4.5ms | Allocations: 4923)
+
+
+Started GET "/users" for ::1 at 2020-04-06 17:31:34 -0400
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome"}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 259)
+
+
+Started GET "/users" for ::1 at 2020-04-06 17:32:08 -0400
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:9:in `index'
+Completed 200 OK in 31ms (Views: 25.3ms | ActiveRecord: 5.6ms | Allocations: 6996)
+
+
+Started GET "/follows" for ::1 at 2020-04-06 17:32:35 -0400
+Processing by FollowsController#index as */*
+  Parameters: {"user"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome"}, "follow"=>{}}
+  [1m[36mFollow Load (0.6ms)[0m  [1m[34mSELECT "follows".* FROM "follows"[0m
+  ↳ app/controllers/follows_controller.rb:9:in `index'
+Completed 200 OK in 12ms (Views: 8.8ms | ActiveRecord: 4.5ms | Allocations: 3933)
+
+
+Started POST "/follows" for ::1 at 2020-04-06 17:33:37 -0400
+Processing by FollowsController#create as */*
+  Parameters: {"user"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>5, "followee_id"=>9}, "follow"=>{}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 265)
+
+
+Started POST "/follows" for ::1 at 2020-04-06 17:33:55 -0400
+Processing by FollowsController#create as */*
+  Parameters: {"follow"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>5, "followee_id"=>9}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 259)
+
+
+Started POST "/follows" for ::1 at 2020-04-06 17:33:56 -0400
+Processing by FollowsController#create as */*
+  Parameters: {"follow"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>5, "followee_id"=>9}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 259)
+
+
+Started POST "/follows" for ::1 at 2020-04-06 17:34:29 -0400
+Processing by FollowsController#create as */*
+  Parameters: {"follow"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>5, "followee_id"=>9}}
+[31mUnpermitted parameters: :username, :email, :password, :image_url, :blurb[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/follows_controller.rb:21:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:21:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:21:in `create'
+  [1m[36mFollow Create (0.5ms)[0m  [1m[32mINSERT INTO "follows" ("follower_id", "followee_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["follower_id", 5], ["followee_id", 9], ["created_at", "2020-04-06 21:34:29.519924"], ["updated_at", "2020-04-06 21:34:29.519924"]]
+  ↳ app/controllers/follows_controller.rb:21:in `create'
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/follows_controller.rb:21:in `create'
+Completed 201 Created in 42ms (Views: 0.7ms | ActiveRecord: 8.6ms | Allocations: 16835)
+
+
+Started POST "/follows" for ::1 at 2020-04-06 17:40:33 -0400
+  
+SyntaxError (/Users/webmaster/sei/mandalorians/unit_4/project4/bitter-backend/app/controllers/application_controller.rb:21: syntax error, unexpected tLABEL, expecting '}'
+...json: { errors: e.message crap: "broke here!" }, status: :un...
+...                          ^~~~~
+/Users/webmaster/sei/mandalorians/unit_4/project4/bitter-backend/app/controllers/application_controller.rb:21: syntax error, unexpected '}', expecting end
+...e.message crap: "broke here!" }, status: :unauthorized
+...                              ^
+/Users/webmaster/sei/mandalorians/unit_4/project4/bitter-backend/app/controllers/application_controller.rb:23: syntax error, unexpected tLABEL, expecting '}'
+...json: { errors: e.message crap: "broke here 2!" }, status: :...
+...                          ^~~~~
+/Users/webmaster/sei/mandalorians/unit_4/project4/bitter-backend/app/controllers/application_controller.rb:23: syntax error, unexpected '}', expecting end
+...message crap: "broke here 2!" }, status: :unauthorized
+...                              ^):
+  
+app/controllers/application_controller.rb:21: syntax error, unexpected tLABEL, expecting '}'
+app/controllers/application_controller.rb:21: syntax error, unexpected '}', expecting end
+app/controllers/application_controller.rb:23: syntax error, unexpected tLABEL, expecting '}'
+app/controllers/application_controller.rb:23: syntax error, unexpected '}', expecting end
+app/controllers/application_controller.rb:21: syntax error, unexpected tLABEL, expecting '}'
+app/controllers/application_controller.rb:21: syntax error, unexpected '}', expecting end
+app/controllers/application_controller.rb:23: syntax error, unexpected tLABEL, expecting '}'
+app/controllers/application_controller.rb:23: syntax error, unexpected '}', expecting end
+app/controllers/follows_controller.rb:1:in `<main>'
+Started POST "/follows" for ::1 at 2020-04-06 17:43:39 -0400
+Started POST "/follows" for ::1 at 2020-04-06 17:50:28 -0400
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by FollowsController#create as */*
+  Parameters: {"follow"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>5, "followee_id"=>9}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 40ms (Views: 0.7ms | ActiveRecord: 4.1ms | Allocations: 4400)
+
+
+Started GET "/follows" for ::1 at 2020-04-06 17:52:00 -0400
+Processing by FollowsController#index as */*
+  Parameters: {"follow"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>5, "followee_id"=>9}}
+  [1m[36mFollow Load (0.5ms)[0m  [1m[34mSELECT "follows".* FROM "follows"[0m
+  ↳ app/controllers/follows_controller.rb:9:in `index'
+Completed 200 OK in 14ms (Views: 8.9ms | ActiveRecord: 4.2ms | Allocations: 4629)
+
+
+Started POST "/follows" for ::1 at 2020-04-06 17:52:37 -0400
+Processing by FollowsController#create as */*
+  Parameters: {"follow"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>9, "followee_id"=>6}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 281)
+
+
+Started POST "/follows" for ::1 at 2020-04-06 17:54:51 -0400
+Processing by FollowsController#create as */*
+  Parameters: {"follow"=>{"follower_id"=>9, "followee_id"=>6}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 281)
+
+
+Started POST "/follows" for ::1 at 2020-04-06 17:54:54 -0400
+Processing by FollowsController#create as */*
+  Parameters: {"follow"=>{"follower_id"=>9, "followee_id"=>6}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 275)
+
+
+Started POST "/follows" for ::1 at 2020-04-06 17:55:19 -0400
+Processing by FollowsController#create as */*
+  Parameters: {"follow"=>{"follower_id"=>9, "followee_id"=>6}}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/follows_controller.rb:21:in `create'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:21:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:21:in `create'
+  [1m[36mFollow Create (0.6ms)[0m  [1m[32mINSERT INTO "follows" ("follower_id", "followee_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["follower_id", 9], ["followee_id", 6], ["created_at", "2020-04-06 21:55:19.572145"], ["updated_at", "2020-04-06 21:55:19.572145"]]
+  ↳ app/controllers/follows_controller.rb:21:in `create'
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/follows_controller.rb:21:in `create'
+Completed 201 Created in 53ms (Views: 1.7ms | ActiveRecord: 10.9ms | Allocations: 17205)
+
+
+Started POST "/auth/login" for ::1 at 2020-04-06 17:56:05 -0400
+Processing by AuthenticationController#login as */*
+  Parameters: {"user"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>9, "followee_id"=>6}, "authentication"=>{"user"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>9, "followee_id"=>6}}}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 186)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: auth):
+  
+app/controllers/authentication_controller.rb:24:in `login_params'
+app/controllers/authentication_controller.rb:6:in `login'
+Started POST "/auth/login" for ::1 at 2020-04-06 17:56:13 -0400
+Processing by AuthenticationController#login as */*
+  Parameters: {"auth"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>9, "followee_id"=>6}, "authentication"=>{"auth"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>9, "followee_id"=>6}}}
+[31mUnpermitted parameters: :email, :image_url, :blurb, :follower_id, :followee_id[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "dude"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6:in `login'
+[31mUnpermitted parameters: :email, :image_url, :blurb, :follower_id, :followee_id[0m
+Completed 200 OK in 281ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 1329)
+
+
+Started DELETE "/users/" for ::1 at 2020-04-06 17:56:42 -0400
+  
+ActionController::RoutingError (No route matches [DELETE] "/users"):
+  
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started DELETE "/users/9" for ::1 at 2020-04-06 17:57:04 -0400
+Processing by UsersController#destroy as */*
+  Parameters: {"user"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>9, "followee_id"=>6}, "id"=>"9"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:47:in `set_user'
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 976)
+
+
+Started POST "/auth/login" for ::1 at 2020-04-06 18:05:17 -0400
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#login as */*
+  Parameters: {"auth"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>9, "followee_id"=>6}, "authentication"=>{"auth"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>9, "followee_id"=>6}}}
+[31mUnpermitted parameters: :email, :image_url, :blurb, :follower_id, :followee_id[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "dude"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6:in `login'
+[31mUnpermitted parameters: :email, :image_url, :blurb, :follower_id, :followee_id[0m
+Completed 200 OK in 422ms (Views: 1.2ms | ActiveRecord: 10.4ms | Allocations: 10380)
+
+
+Started GET "/follows" for ::1 at 2020-04-06 18:09:45 -0400
+Processing by FollowsController#index as */*
+  Parameters: {"auth"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>9, "followee_id"=>6}, "follow"=>{}}
+  [1m[36mFollow Load (0.6ms)[0m  [1m[34mSELECT "follows".* FROM "follows"[0m
+  ↳ app/controllers/follows_controller.rb:9:in `index'
+Completed 200 OK in 22ms (Views: 16.6ms | ActiveRecord: 4.5ms | Allocations: 4158)
+
+
+Started POST "/follows" for ::1 at 2020-04-06 18:11:59 -0400
+Processing by FollowsController#create as */*
+  Parameters: {"follow"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>6, "followee_id"=>7}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 154)
+
+
+Started POST "/follows" for ::1 at 2020-04-06 18:12:45 -0400
+Processing by FollowsController#create as */*
+  Parameters: {"follow"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>6, "followee_id"=>7}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 151)
+
+
+Started POST "/follows" for ::1 at 2020-04-06 18:13:27 -0400
+Processing by FollowsController#create as */*
+  Parameters: {"follow"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>6, "followee_id"=>7}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+[31mUnpermitted parameters: :username, :email, :password, :image_url, :blurb[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/follows_controller.rb:21:in `create'
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:21:in `create'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:21:in `create'
+  [1m[36mFollow Create (0.8ms)[0m  [1m[32mINSERT INTO "follows" ("follower_id", "followee_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["follower_id", 6], ["followee_id", 7], ["created_at", "2020-04-06 22:13:27.350579"], ["updated_at", "2020-04-06 22:13:27.350579"]]
+  ↳ app/controllers/follows_controller.rb:21:in `create'
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/follows_controller.rb:21:in `create'
+Completed 201 Created in 69ms (Views: 1.2ms | ActiveRecord: 4.6ms | Allocations: 8222)
+
+
+Started GET "/follows" for ::1 at 2020-04-06 18:14:10 -0400
+Processing by FollowsController#index as */*
+  Parameters: {"user"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>6, "followee_id"=>7}, "follow"=>{}}
+  [1m[36mFollow Load (0.8ms)[0m  [1m[34mSELECT "follows".* FROM "follows"[0m
+  ↳ app/controllers/follows_controller.rb:9:in `index'
+Completed 200 OK in 10ms (Views: 7.9ms | ActiveRecord: 0.8ms | Allocations: 1430)
+
+
+Started GET "/follows" for ::1 at 2020-04-06 18:14:30 -0400
+Processing by FollowsController#index as */*
+  Parameters: {"user"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>6, "followee_id"=>7}, "follow"=>{}}
+  [1m[36mFollow Load (0.4ms)[0m  [1m[34mSELECT "follows".* FROM "follows"[0m
+  ↳ app/controllers/follows_controller.rb:9:in `index'
+Completed 200 OK in 7ms (Views: 5.6ms | ActiveRecord: 0.4ms | Allocations: 1431)
+
+
+Started GET "/follows" for ::1 at 2020-04-06 18:14:33 -0400
+Processing by FollowsController#index as */*
+  Parameters: {"user"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>6, "followee_id"=>7}, "follow"=>{}}
+  [1m[36mFollow Load (3.5ms)[0m  [1m[34mSELECT "follows".* FROM "follows"[0m
+  ↳ app/controllers/follows_controller.rb:9:in `index'
+Completed 200 OK in 13ms (Views: 8.7ms | ActiveRecord: 3.5ms | Allocations: 1413)
+
+
+Started GET "/follows" for ::1 at 2020-04-06 18:15:45 -0400
+Processing by FollowsController#index as */*
+  Parameters: {"user"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>6, "followee_id"=>7}, "follow"=>{}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.9ms | ActiveRecord: 3.0ms | Allocations: 190)
+
+
+Started GET "/follows" for ::1 at 2020-04-06 18:17:01 -0400
+Processing by FollowsController#index as */*
+  Parameters: {"user"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>6, "followee_id"=>7}, "follow"=>{}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mFollow Load (0.3ms)[0m  [1m[34mSELECT "follows".* FROM "follows"[0m
+  ↳ app/controllers/follows_controller.rb:9:in `index'
+Completed 200 OK in 60ms (Views: 12.2ms | ActiveRecord: 10.8ms | Allocations: 13512)
+
+
+Started GET "/follows" for ::1 at 2020-04-06 18:17:17 -0400
+Processing by FollowsController#index as */*
+  Parameters: {"user"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>6, "followee_id"=>7}, "follow"=>{}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+  [1m[36mFollow Load (2.2ms)[0m  [1m[34mSELECT "follows".* FROM "follows"[0m
+  ↳ app/controllers/follows_controller.rb:9:in `index'
+Completed 200 OK in 10ms (Views: 5.0ms | ActiveRecord: 2.7ms | Allocations: 2064)
+
+
+Started POST "/follows" for ::1 at 2020-04-06 18:18:31 -0400
+Processing by FollowsController#create as */*
+  Parameters: {"follow"=>{"username"=>"dude", "email"=>"hairy_dude@dude.com", "password"=>"[FILTERED]", "image_url"=>"", "blurb"=>"I'm Awesome", "follower_id"=>9, "followee_id"=>3}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+[31mUnpermitted parameters: :username, :email, :password, :image_url, :blurb[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/follows_controller.rb:21:in `create'
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:21:in `create'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/follows_controller.rb:21:in `create'
+  [1m[36mFollow Create (0.5ms)[0m  [1m[32mINSERT INTO "follows" ("follower_id", "followee_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["follower_id", 9], ["followee_id", 3], ["created_at", "2020-04-06 22:18:31.483016"], ["updated_at", "2020-04-06 22:18:31.483016"]]
+  ↳ app/controllers/follows_controller.rb:21:in `create'
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/follows_controller.rb:21:in `create'
+Completed 201 Created in 26ms (Views: 1.0ms | ActiveRecord: 5.4ms | Allocations: 5684)
+
+

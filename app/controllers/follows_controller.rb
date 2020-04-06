@@ -1,6 +1,6 @@
 class FollowsController < ApplicationController
-  before_action :set_hate, only: [:show, :update, :destroy]
-  #before_action :authorize_request, except: [:index, :show]
+  before_action :set_follow, only: [:show, :update, :destroy]
+  before_action :authorize_request, except: [:index, :show]
 
   # GET /follows
   def index
@@ -47,6 +47,6 @@ class FollowsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def follow_params
-      params.require(:follow).permit(:follow, :followee_id, :follower_id)
+      params.require(:follow).permit(:follower_id, :followee_id)
     end
 end
