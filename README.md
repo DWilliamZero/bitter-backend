@@ -1,21 +1,20 @@
 # Bitter - Share Your Dumb Opinions With The World!
 
 ## Description:
-Bitter is an "Angry-Bird" parody of twitter.  Users can create an account, login, post "bits", comment on other people's bits, and follow other users. Bitter is built using a React frontend and a Ruby on Rails backend.  Bitter also employs firebase cloud storage for pictures, and Gem Mail package for email notifications.  The Frontend is deployed to Surge, and the backend is deployed on Heroku.
+Bitter is an "Angry-Bird" parody of twitter.  Users can create an account, login, post "bits", and follow other users. Bitter is built using a React frontend and a Ruby on Rails backend.  Bitter also employs firebase cloud storage for pictures, and Gem Mail package for email notifications.  The Frontend is deployed to Surge, and the backend is deployed on Heroku.
 ![Bitter - Share Your Dumb Opinions With The World!](https://dwilliamzero.com/zero-cloud/bitter-logo.png "Bitter - Share Your Dumb Opinions With The World!")
 
 ## MVP Goals Include:
  - Users can create an account
- - Users can post and delete "bits"
+ - Users can post "bits"
  - Users can upload pictures (for both bits and avatars)
- - Users can comment on bits
  - Users can follow other users
  - Styling will actuarately parody twitter's styling
  
  ## Post MVP Goals Include:
  - Email notifications
  - Change password
- - User can delete comments
+ - User can delete bits
  - Users can unfollow users
  
  ## Wireframes
