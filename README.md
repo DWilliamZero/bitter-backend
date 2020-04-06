@@ -19,6 +19,16 @@ Bitter is an "Angry-Bird" parody of twitter.  Users can create an account, login
  - Users can unfollow users
  
  ## Wireframes
+ ### Landing Page / Login /sign up
+ ![Bitter ERD - By D. William Zero](https://dwilliamzero.com/zero-cloud/landing-page.png "Bitter ERD - By D. William Zero")
+ ### User's Feed
+ ![Bitter ERD - By D. William Zero](https://dwilliamzero.com/zero-cloud/users-feed.png "Bitter ERD - By D. William Zero")
+ ### Followers
+ ![Bitter ERD - By D. William Zero](https://dwilliamzero.com/zero-cloud/followers.png "Bitter ERD - By D. William Zero")
+ ### Post New Bit
+ ![Bitter ERD - By D. William Zero](https://dwilliamzero.com/zero-cloud/new-bit.png "Bitter ERD - By D. William Zero")
+ ### Change Password
+ ![Bitter ERD - By D. William Zero](https://dwilliamzero.com/zero-cloud/change-password.png "Bitter ERD - By D. William Zero")
  
  ## Component Tree
  ![Bitter Component Tree - By D. William Zero](https://dwilliamzero.com/zero-cloud/bitter-component-tree.png "Bitter Component Tree - By D. William Zero")
