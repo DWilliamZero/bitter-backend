@@ -44,13 +44,13 @@ Bitter is an "Angry-Bird" parody of twitter.  Users can create an account, login
 
 | Component        | Priority  | Estimated Time |
 | ----------------------- | :--------: |  -----------: |
-| Backend Setup w/ Routes | Super High | 4-hours|
-| Frontend Setup | Super High | 8-hours|
+| Backend Setup w/ Routes | Super High | 12-hours|
+| Frontend Setup | Super High | 12-hours|
 | Basic Styling | High | 24-Hours|
 | Firebase Cloud Storage | Medium | 4-hours|
 | Email Notifications | Medium | 4-hours|
 | Change Password | Low | 4-hours|
-| Total |  --  | 40-hours|
+| Total |  --  | 52-hours|
 
 ## Link to deployed site
 
