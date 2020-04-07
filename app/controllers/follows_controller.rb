@@ -1,16 +1,16 @@
 class FollowsController < ApplicationController
   before_action :authorize_request
   
-  # GET /followers
+  # GET user/:user_id/followers
   def followers
-    @followers = @current_user.followers
+    @followers = User.find(params[:user_id]).followers
 
     render json: @followers
   end
 
-  # GET /following
+  # GET user/:user_id/following
   def following
-    @followees = @current_user.followees
+    @followees = User.find(params[:user_id]).followees
 
     render json: @followees
   end

@@ -3,13 +3,14 @@ Rails.application.routes.draw do
   post '/auth/login', to: 'authentication#login'
   get '/auth/verify', to: 'authentication#verify'
 
-  get '/followers', to: 'follows#followers'
-  get '/following', to: 'follows#following'
   post '/follow', to: 'follows#create'
   delete '/unfollow', to: 'follows#destroy'
 
   resources :users do
+    get '/followers', to: 'follows#followers'
+    get '/following', to: 'follows#following'
     resources :posts do
+      delete '/hates', to: 'hates#destroy'
       resources :hates
     end
   end
