@@ -1,7 +1,6 @@
 class FollowsController < ApplicationController
-  before_action :set_follow, only: [:show, :update, :destroy]
   before_action :authorize_request
-
+  
   # GET /followers
   def followers
     @followers = @current_user.followers
@@ -16,14 +15,10 @@ class FollowsController < ApplicationController
     render json: @followees
   end
 
-  # # GET /follows/:id
-  # def show
-  #   render json: @follow
-  # end
-
-  # POST /follows
+  # POST /follow
   def create
     @follow = Follow.new(follow_params)
+    @follow.follower_id = @current_user.id
 
     if @follow.save
       render json: @follow, status: :created, location: @follow
@@ -32,28 +27,18 @@ class FollowsController < ApplicationController
     end
   end
 
-  # # PATCH/PUT /follows/:id
-  # def update
-  #   if @follow.update(follow_params)
-  #     render json: @follow
-  #   else
-  #     render json: @follow.errors, status: :unprocessable_entity
-  #   end
-  # end
-
-  # DELETE /follows/:id
+  # DELETE /un-follow
   def destroy
-    @follow.destroy
+    @follow = Follow.where(follower_id: @current_user.id, followee_id: follow_params[:followee_id])
+
+    Follow.destroy(@follow[0].id)
+    render json: "Another Relationship Succesfully Destroyed!"
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_follow
-      @follow = Follow.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
+    # Only allow a trusted parameters through.
     def follow_params
-      params.require(:follow).permit(:follower_id, :followee_id)
+      params.require(:follow).permit(:followee_id)
     end
 end

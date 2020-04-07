@@ -2,10 +2,12 @@ Rails.application.routes.draw do
 
   post '/auth/login', to: 'authentication#login'
   get '/auth/verify', to: 'authentication#verify'
-  get '/follows/get-followers', to: 'follows#followers'
-  get '/follows/get-following', to: 'follows#following'
 
-  resources :follows
+  get '/followers', to: 'follows#followers'
+  get '/following', to: 'follows#following'
+  post '/follow', to: 'follows#create'
+  delete '/unfollow', to: 'follows#destroy'
+
   resources :users do
     resources :posts do
       resources :hates

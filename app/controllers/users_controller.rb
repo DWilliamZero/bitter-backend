@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   # DELETE /users/:id
   def destroy
     @current_user.destroy
-    render json: `User Was Deleted: #{@current_user}`
+    render json: "User Was Deleted: #{@current_user}"
   end
 
   private
