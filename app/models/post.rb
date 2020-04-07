@@ -1,6 +1,5 @@
 class Post < ApplicationRecord
   belongs_to :user
 
-  validates :content, length: { maximum: 100 }, presence: true
-  validates :image_url, allow_blank: true
+  validates :content, length: { maximum: 140 }, presence: true
 end
