@@ -1,18 +1,25 @@
 class FollowsController < ApplicationController
   before_action :set_follow, only: [:show, :update, :destroy]
-  before_action :authorize_request, except: [:index, :show]
+  before_action :authorize_request
 
-  # GET /follows
-  def index
-    @follows = Follow.all
+  # GET /followers
+  def followers
+    @followers = @current_user.followers
 
-    render json: @follows
+    render json: @followers
   end
 
-  # GET /follows/:id
-  def show
-    render json: @follow
+  # GET /following
+  def following
+    @followees = @current_user.followees
+
+    render json: @followees
   end
+
+  # # GET /follows/:id
+  # def show
+  #   render json: @follow
+  # end
 
   # POST /follows
   def create
@@ -25,14 +32,14 @@ class FollowsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /follows/:id
-  def update
-    if @follow.update(follow_params)
-      render json: @follow
-    else
-      render json: @follow.errors, status: :unprocessable_entity
-    end
-  end
+  # # PATCH/PUT /follows/:id
+  # def update
+  #   if @follow.update(follow_params)
+  #     render json: @follow
+  #   else
+  #     render json: @follow.errors, status: :unprocessable_entity
+  #   end
+  # end
 
   # DELETE /follows/:id
   def destroy

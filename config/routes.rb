@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   post '/auth/login', to: 'authentication#login'
   get '/auth/verify', to: 'authentication#verify'
+  get '/follows/get-followers', to: 'follows#followers'
+  get '/follows/get-following', to: 'follows#following'
 
   resources :follows
   resources :users do
