@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_06_200142) do
+ActiveRecord::Schema.define(version: 2020_04_07_181135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2020_04_06_200142) do
     t.integer "followee_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["follower_id", "followee_id"], name: "index_follows_on_follower_id_and_followee_id", unique: true
   end
 
   create_table "hates", force: :cascade do |t|
@@ -29,6 +30,7 @@ ActiveRecord::Schema.define(version: 2020_04_06_200142) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_hates_on_post_id"
+    t.index ["user_id", "post_id"], name: "index_hates_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_hates_on_user_id"
   end
 
@@ -49,6 +51,8 @@ ActiveRecord::Schema.define(version: 2020_04_06_200142) do
     t.string "blurb"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "follower_count", default: 0
+    t.integer "followee_count", default: 0
   end
 
   add_foreign_key "hates", "posts"

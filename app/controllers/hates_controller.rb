@@ -1,52 +1,35 @@
 class HatesController < ApplicationController
-  before_action :set_hate, only: [:show, :update, :destroy]
-  before_action :authorize_request, except: [:index, :show]
+  before_action :authorize_request
 
-  # GET /hates
+  # GET user/:user_id/posts/:post_id/hates
   def index
-    @hates = Hate.all
-
-    render json: @hates
+    @hates = Hate.where(user_id: @current_user.id, post_id: params[:post_id]).length
+  
+    render json: {hate_count: @hates}
   end
 
-  # GET /hates/1
-  def show
-    render json: @hate
-  end
-
-  # POST /hates
+  # POST user/:user_id/posts/:post_id/hates
   def create
-    @hate = Hate.new(hate_params)
+    @hate = Hate.new(user_id: @current_user.id, post_id: params[:post_id])
 
+    #render json: @hate
     if @hate.save
-      render json: @hate, status: :created, location: @hate
+      render json: @hate #, status: :created, location: @hate
     else
       render json: @hate.errors, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /hates/1
-  def update
-    if @hate.update(hate_params)
-      render json: @hate
-    else
-      render json: @hate.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /hates/1
+  # DELETE user/:user_id/post/:post_id/hates
   def destroy
-    @hate.destroy
+    @hate = Hate.where(user_id: @current_user.id, post_id: params[:post_id])
+
+    if @hate[0] != nil
+    Hate.destroy(@hate[0].id)
+    render json: "Way to show the love... You dirty hippie!"
+    else
+      render json: "This hate does not exist"
+    end
   end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_hate
-      @hate = Hate.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def hate_params
-      params.require(:hate).permit(:hate, :user_id, :post_id)
-    end
+  
 end
