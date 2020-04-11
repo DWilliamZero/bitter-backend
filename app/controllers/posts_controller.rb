@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
   before_action :authorize_request
 
+  # GET posts/
   # GET user/:user_id/posts
   def index
     @posts = Post.all
 
-    render json: @posts
+    render json: @posts, include: :user
   end
 
   # GET user/:user_id/posts/:id
