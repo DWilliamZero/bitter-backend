@@ -27,7 +27,7 @@ class FollowsController < ApplicationController
     end
   end
 
-  # DELETE /un-follow
+  # DELETE /unfollow
   def destroy
     @follow = Follow.where(follower_id: @current_user.id, followee_id: follow_params[:followee_id])
 
