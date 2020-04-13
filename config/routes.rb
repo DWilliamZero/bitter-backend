@@ -6,12 +6,13 @@ Rails.application.routes.draw do
   post '/follow', to: 'follows#create'
   delete '/unfollow', to: 'follows#destroy'
 
+  get '/hates', to: 'hates#all'
+
   resources :users do
     get '/followers', to: 'follows#followers'
     get '/following', to: 'follows#following'
     resources :posts do
-      get '/all-hates', to: 'hates#get-all'
-      delete '/remove-hates', to: 'hates#destroy'
+      delete '/hates', to: 'hates#destroy'
       resources :hates
     end
   end
