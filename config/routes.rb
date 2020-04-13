@@ -10,7 +10,8 @@ Rails.application.routes.draw do
     get '/followers', to: 'follows#followers'
     get '/following', to: 'follows#following'
     resources :posts do
-      delete '/hates', to: 'hates#destroy'
+      get '/all-hates', to: 'hates#get-all'
+      delete '/remove-hates', to: 'hates#destroy'
       resources :hates
     end
   end

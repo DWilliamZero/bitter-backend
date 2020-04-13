@@ -1,10 +1,16 @@
 class HatesController < ApplicationController
   before_action :authorize_request
 
+  # GET /get-all
+  def get-all
+    @hates = Hate.all
+    render json: @hates
+  end
+
+
   # GET user/:user_id/posts/:post_id/hates
   def index
     @hates = Hate.where(user_id: @current_user.id, post_id: params[:post_id]).length
-  
     render json: {hate_count: @hates}
   end
 
@@ -20,7 +26,7 @@ class HatesController < ApplicationController
     end
   end
 
-  # DELETE user/:user_id/post/:post_id/hates
+  # DELETE /remove-hates
   def destroy
     @hate = Hate.where(user_id: @current_user.id, post_id: params[:post_id])
 
