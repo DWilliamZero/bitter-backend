@@ -1,6 +1,12 @@
 class FollowsController < ApplicationController
   before_action :authorize_request
   
+    # GET /follows
+    def all
+      @hates = Hate.all
+      render json: @hates
+    end
+
   # GET user/:user_id/followers
   def followers
     @followers = User.find(params[:user_id]).followers
@@ -15,13 +21,13 @@ class FollowsController < ApplicationController
     render json: @followees
   end
 
-  # POST /follow
+  # POST /follows
   def create
     @follow = Follow.new(follow_params)
     @follow.follower_id = @current_user.id
 
     if @follow.save
-      render json: @follow, status: :created, location: @follow
+      render json: @follow#, status: :created, location: @follow
     else
       render json: @follow.errors, status: :unprocessable_entity
     end
